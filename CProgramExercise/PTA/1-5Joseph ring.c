@@ -15,7 +15,7 @@ typedef enum {
  * 初始化链表（循环单列表），创建头节点
  * @return 一个头节点
  */
-PtrToNode InitList();
+PtrToNode InitListLoop();
 
 /**
  * 在指定节点后插入节点
@@ -41,12 +41,13 @@ Bool RemoveNode(PtrToNode list, PtrToNode node);
 PtrToNode CreateNew(ElementType element);
 
 int main() {
-    PtrToNode list = InitList();
+    PtrToNode list = InitListLoop();
     PtrToNode start = list;
     PtrToNode node;
     PtrToNode newStart;
     int total,gap;
     scanf("%d %d", &total, &gap);
+    //无头节点，头节点赋值
     list->data = 1;
     //创建循环单链表
     for (int i = 2; i <= total; ++i) {
@@ -54,6 +55,7 @@ int main() {
         InsertNode(start, node);
         start = start->next;
     }
+    //使之成为循环链表
     start = list;
     while (start->next != start) {
         for (int j = 0; j < gap-1; ++j) {
@@ -70,7 +72,7 @@ int main() {
     free(start);
 }
 
-PtrToNode InitList() {
+PtrToNode InitListLoop() {
     PtrToNode list = (PtrToNode) malloc(sizeof(struct Node));
     if (list == NULL) { exit(1); }
     list->next = list;
