@@ -78,7 +78,7 @@ int main() {
         TestAllSortFunction(num, amount);
         free(num);
     }
-    printf("||||||||||||||||||||||below are lifhtly random|||||||||||||||||||||||||||||||");
+    printf("||||||||||||||||||||||below are lightly random|||||||||||||||||||||||||||||||");
     for (int i = 0; i < 5; ++i) {
         amount = (int) pow(10, (i + 2));
         if (amount % 10 != 0) {
@@ -88,7 +88,7 @@ int main() {
         num = Generate(amount);
         //进行稍微的无序
         QuickSort(num,0,amount-1);
-        num[amount/2]=num[0];
+        num[34]=num[66];
 
         TestAllSortFunction(num, amount);
         free(num);
@@ -276,12 +276,16 @@ void TestAllSortFunction(const int constNum[], int amount) {
                 break;
             case 3:
                 //递归深度过深 栈溢出 不要再运行了 如果电脑好可以注释掉这个if
-                if(amount>200000){
-                    printf("may time out, exit\n\n");
-                    return;}
+                if(amount>100000){
+                    printf("may time out or stackoverflow, continue\n\n");
+                    continue;}
                 MergeSort(num, 0, amount - 1);
                 break;
             case 4:
+                //递归深度过深 栈溢出 不要再运行了 如果电脑好可以注释掉这个if
+                if(amount>=100000){
+                    printf("may time out or stackoverflow, continue\n\n");
+                    continue;}
                 QuickSort(num, 0, amount - 1);
                 break;;
             default:
