@@ -41,11 +41,9 @@ int Partition(int num[], int low, int high) {
         }
         num[low] = num[high];
         //空位在后，找大
-        //?low++?
         while (low < high && num[low] <= num[0]) {
             low++;
         }
-        //high--?
         num[high] = num[low];
 
     }
