@@ -67,14 +67,30 @@ int main() {
     int *num, amount;
     double begin, end;
     //数组检验排序正确性与时间
+    printf("||||||||||||||||||||||below are totally random|||||||||||||||||||||||||||||||");
     for (int i = 0; i < 5; ++i) {
-        amount = (int) pow(10, (i + 1));
-        if(amount%10!=0){
+        amount = (int) pow(10, (i + 2));
+        if (amount % 10 != 0) {
             amount++;
         }
-        printf("-------------------------amount: %d ----------------------------\n",amount);
+        printf("-------------------------amount: %d ----------------------------\n", amount);
         num = Generate(amount);
-        TestAllSortFunction(num,amount);
+        TestAllSortFunction(num, amount);
+        free(num);
+    }
+    printf("||||||||||||||||||||||below are lifhtly random|||||||||||||||||||||||||||||||");
+    for (int i = 0; i < 5; ++i) {
+        amount = (int) pow(10, (i + 2));
+        if (amount % 10 != 0) {
+            amount++;
+        }
+        printf("-------------------------amount: %d ----------------------------\n", amount);
+        num = Generate(amount);
+        //进行稍微的无序
+        QuickSort(num,0,amount-1);
+        num[amount/2]=num[0];
+
+        TestAllSortFunction(num, amount);
         free(num);
     }
     return 0;
@@ -240,7 +256,7 @@ void QuickSort(int num[], int start, int end) {
 void TestAllSortFunction(const int constNum[], int amount) {
     char *funcName[] = {"BubbleSort", "SelectSort", "InsertSort", "MergeSort", "QuickSort"};
     double begin, end;
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 4; i >= 0; --i) {
         //不改变原来的，要不然后面没法排了
         int *num = (int *) malloc(amount * sizeof(int));
         for (int j = 0; j < amount; ++j) {
@@ -259,6 +275,10 @@ void TestAllSortFunction(const int constNum[], int amount) {
                 InsertSort(num, amount);
                 break;
             case 3:
+                //递归深度过深 栈溢出 不要再运行了 如果电脑好可以注释掉这个if
+                if(amount>200000){
+                    printf("may time out, exit\n\n");
+                    return;}
                 MergeSort(num, 0, amount - 1);
                 break;
             case 4:
