@@ -80,6 +80,7 @@ crashlytics.properties
 crashlytics-build.properties
 
 # Clion
+.idea
 CMakeLists.txt
 cmake-build-debug
 test

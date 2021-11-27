@@ -6,7 +6,5 @@ set(CMAKE_C_STANDARD 99)
 include_directories(.)
 
 add_executable(MySchoolCode
-        CProgramExercise/iMooc/SortEvaluate.c
-#        test/comp1.c
-#        test/test2.c
-        )
+        CProgramExercise/iMooc/MultipleLinearRegression/MLR.c
+)
